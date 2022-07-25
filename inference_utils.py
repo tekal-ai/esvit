@@ -177,8 +177,10 @@ def eval_esvit(args):
 
     for i, (img, label) in enumerate(data_loader):
 
-        out = teacher(img)[-1]
-        outs.append(out)
+        out = teacher(img)
+        for i, val in enumerate(out):
+            print(f"Type @ idx {i}: {type(val)}")
+        outs.append(out[-1])
 
     tf = time.time_ns()
     print(f"Time spend ns: {tf - t0}")
